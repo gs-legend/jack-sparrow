@@ -1,21 +1,21 @@
-import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Dashboard from "./Dashboard";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { NotFound } from "@/components/NotFound";
+import Header from "@/components/Header";
+import Dashboard from "./Dashboard";
 import ControlRoom from "./ControlRoom";
-import Submarine from "./Submarine";
+import SubmarineContainer from "./SubmarineContainer";
 
 const Root = () => {
     return (
-        <ErrorBoundary>
+        <div className='w-full h-full'>
             <BrowserRouter>
+                <Header />
                 <Routes>
-                    <Route key="root" path="/" element={<Dashboard />}>
-                        <Route key="controlroom" path="controlroom" element={<ControlRoom />} />
-                        <Route key="submarine" path="submarine" element={<Submarine />} />
-                    </Route>
+                    <Route key="root" path="/" element={<Dashboard />} />
+                    <Route key="controlroom" path="controlroom" element={<ControlRoom />} />
+                    <Route key="submarine" path="submarine" element={<SubmarineContainer />} />
                     <Route key="unknown" path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
@@ -28,7 +28,7 @@ const Root = () => {
                 pauseOnFocusLoss
                 pauseOnHover
                 theme="light" />
-        </ErrorBoundary>
+        </div>
     )
 }
 
